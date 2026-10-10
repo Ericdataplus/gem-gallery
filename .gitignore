@@ -1,0 +1,13 @@
+# Godot
+.godot/
+*.import
+
+# Baked halls are build output (re-bake with res://bake/bake.tscn)
+baked/
+
+# Check renders
+images/
+
+# Python / OS
+__pycache__/
+.DS_Store
