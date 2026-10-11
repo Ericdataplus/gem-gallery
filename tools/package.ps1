@@ -1,4 +1,4 @@
-﻿# Builds dist/GemGallery.zip: a folder a friend can unzip and double-click.
+# Builds dist/GemGallery.zip: a folder a friend can unzip and double-click.
 #   GemGallery.exe  = the Godot 4.7 runtime (it runs the .pck with the same name next to it)
 #   GemGallery.pck  = the gallery (baked halls + scripts)
 #   README.txt      = how to start, controls

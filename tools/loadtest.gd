@@ -1,4 +1,4 @@
-﻿extends Node
+extends Node
 
 ## Diagnostic: how long does each baked hall take to load, and what is in it?
 func _ready() -> void:

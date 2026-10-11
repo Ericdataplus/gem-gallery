@@ -1,7 +1,7 @@
 class_name ShopStones
 
 # â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-# SHOP STONES â€” the rock-shop side of the hobby: tumbled and polished stones,
+# SHOP STONES — the rock-shop side of the hobby: tumbled and polished stones,
 # spheres, wands, dice, selenite sticks, trilobites, lava rock and bismuth.
 # One polished-stone shader with a per-material "kind"; meshes are cached
 # variants; heaps are MultiMeshes (seed per instance via custom data).
@@ -30,7 +30,7 @@ static func material(kind: String) -> ShaderMaterial:
 	_mats[kind] = m
 	return m
 
-# â”€â”€ meshes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── meshes ───────────────────────────────────────────────────────────────────
 ## Tumbled stone: lumpy rounded pebble (variant 0..5), unit-ish radius.
 static func tumbled_mesh(v: int) -> ArrayMesh:
 	var key := "tumbled%d" % v
@@ -200,7 +200,7 @@ static func heap(kind: String, area: Vector2, count: int, size: Vector2, seed_: 
 		root.add_child(mmi)
 	return root
 
-# â”€â”€ the polished-stone shader â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── the polished-stone shader ───────────────────────────────────────────────
 const HEAD := """
 shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
@@ -230,7 +230,7 @@ float glyph(vec2 uv, float k) {
 	else if (h < 0.82) m = step(abs(length(f * vec2(1.0, 2.2)) - 0.26), 0.07) + step(length(f), 0.07);
 	return clamp(m, 0.0, 1.0) * step(h, 0.86);
 }
-// â”€â”€ little silhouettes (metres, feet at y=0) for the Standard of Ur â”€â”€
+// ── little silhouettes (metres, feet at y=0) for the Standard of Ur ──
 float sd_box(vec2 p, vec2 c, vec2 hb) { vec2 d = abs(p - c) - hb; return length(max(d, 0.0)) + min(max(d.x, d.y), 0.0); }
 float ur_person(vec2 q) {
 	float m = step(length(q - vec2(0.0, 0.088)), 0.0105);

@@ -1,4 +1,4 @@
-﻿# Gem Gallery
+# Gem Gallery
 
 A walkable, first-person void gallery of real-world gems and treasures: raw mineral
 specimens, every classic cut, a treasure heap, collector displays, the legendary gems,
@@ -14,7 +14,7 @@ godot --path . --screen 1
 ```
 
 WASD walk · Shift run · Space jump · mouse look · E pick up a gem · F labels ·
-Esc/Tab free the mouse (click to recapture) Â· Q quit.
+Esc/Tab free the mouse (click to recapture) · Q quit.
 
 ## How it is built
 

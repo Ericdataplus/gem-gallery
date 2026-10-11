@@ -1,7 +1,7 @@
 class_name TreasuryKit
 
 # â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-# TREASURY KIT â€” shared jeweller's toolkit for the Royal Treasury and the
+# TREASURY KIT — shared jeweller's toolkit for the Royal Treasury and the
 # Collector's Wing: materials (velvets, pearl, platinum, rose gold, carved rock
 # crystal, galaxy glitter), stone registration, gem/collet/pave placement,
 # parametric surfaces and the hall layout (plinths, spots, plaques).
@@ -72,7 +72,7 @@ static func mats() -> Dictionary:
 	}
 	return _m
 
-# â”€â”€ carved rock crystal / amethyst: screen-refracted glass with frosted engraving
+# ── carved rock crystal / amethyst: screen-refracted glass with frosted engraving
 const CRYSTAL_SHADER := """
 shader_type spatial;
 render_mode blend_mix, depth_draw_always, cull_back, diffuse_burley, specular_schlick_ggx;
@@ -131,7 +131,7 @@ static func crystal(tint: Color, engrave := 1.0, cloud := 0.0, scl := 30.0) -> S
 	_crys[key] = m
 	return m
 
-# â”€â”€ galaxy quartz: dark quartz full of glittering metallic flakes (marched in object space)
+# ── galaxy quartz: dark quartz full of glittering metallic flakes (marched in object space)
 const GALAXY_SHADER := """
 shader_type spatial;
 render_mode blend_mix, cull_back, specular_schlick_ggx;
@@ -201,7 +201,7 @@ static func galaxy(body := Color(0.05, 0.03, 0.07), density := 0.35) -> ShaderMa
 	_gal[key] = m
 	return m
 
-# â”€â”€ stones used by the treasury pieces â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── stones used by the treasury pieces ───────────────────────────────────────
 static var _registered := false
 
 static func register() -> void:
@@ -265,7 +265,7 @@ static func register() -> void:
 	for k in cabs:
 		GemFactory.extra_stones[k] = [cabs[k], 1.77, 0.0, ["cabochon"], 0.0, 4]
 
-# â”€â”€ placement helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── placement helpers ───────────────────────────────────────────────────────
 static func d(a: float) -> Vector3:
 	return Vector3(sin(a), 0.0, cos(a))
 
@@ -431,7 +431,7 @@ static func halo(items: Array, c: Vector3, ax: Vector3, ay: Vector3, radius: flo
 		var a := float(i) / float(k) * TAU
 		gem(items, stone, cut, c + (ax * cos(a) + ay * sin(a) * sy) * radius, n, ax * cos(a) + ay * sin(a), size)
 
-# â”€â”€ hall layout: plinths on both sides of an aisle, spot-lit, with plaques â”€â”€
+# ── hall layout: plinths on both sides of an aisle, spot-lit, with plaques ──
 ## list entries: [key, title, subtitle, note, Vector3(width, top, depth)]
 static func hall(g: Node3D, start: Vector3, list: Array, title: String, maker: Callable, carpet_col: Color) -> float:
 	var spacing := 3.4

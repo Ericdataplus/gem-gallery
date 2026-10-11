@@ -1,7 +1,7 @@
 class_name RoyalTreasury
 
 # â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-# ROYAL TREASURY â€” crowns, regalia and Kunstkammer treasures, each modelled on
+# ROYAL TREASURY — crowns, regalia and Kunstkammer treasures, each modelled on
 # a real piece (or the photo it came from): Imperial State Crown, St Edward's
 # Crown, the Holy Roman imperial crown, tiaras, high-jewellery necklaces,
 # carved rock crystal and lapis, the Standard of Ur and collector stones.
@@ -125,7 +125,7 @@ static func _fib_sphere(items: Array, c: Vector3, r: float, count: int, size: fl
 			continue
 		TreasuryKit.gem(items, stone, cut, c + n * r, n, Vector3.UP.cross(n) if absf(n.y) < 0.95 else Vector3.RIGHT, size)
 
-# â”€â”€ Imperial State Crown â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Imperial State Crown ────────────────────────────────────────────────────
 static func _isc(h: Node3D) -> void:
 	var root := Node3D.new()
 	h.add_child(root)
@@ -235,7 +235,7 @@ static func _isc(h: Node3D) -> void:
 	root.add_child(TreasuryKit.balls(pearls, TreasuryKit.mats()["pearl"]))
 	root.add_child(GemFactory.make_set(items))
 
-# â”€â”€ St Edward's Crown (gold, coloured stones in collets) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── St Edward's Crown (gold, coloured stones in collets) ────────────────────
 static func _st_edward(h: Node3D) -> void:
 	var root := Node3D.new()
 	h.add_child(root)
@@ -332,7 +332,7 @@ static func _st_edward(h: Node3D) -> void:
 	root.add_child(TreasuryKit.collet_node(cols, gold))
 	root.add_child(GemFactory.make_set(items))
 
-# â”€â”€ Holy Roman imperial crown: eight hinged plates â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Holy Roman imperial crown: eight hinged plates ─────────────────────────
 static func _plate_poly(w: float, H: float, segs := 12) -> PackedVector2Array:
 	var p := PackedVector2Array()
 	p.append(Vector2(w * 0.5, 0.0))
@@ -476,7 +476,7 @@ static func _hre(h: Node3D) -> void:
 	root.add_child(TreasuryKit.collet_node(cols, gold))
 	root.add_child(GemFactory.make_set(items))
 
-# â”€â”€ emerald crown on a green velvet cushion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── emerald crown on a green velvet cushion ─────────────────────────────────
 static var _leaf: Mesh
 
 static func _leaf_mesh() -> Mesh:
@@ -584,7 +584,7 @@ static func _emerald_crown(h: Node3D) -> void:
 	root.add_child(TreasuryKit.collet_node(cols, gold))
 	root.add_child(GemFactory.make_set(items))
 
-# â”€â”€ pageant crown â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── pageant crown ───────────────────────────────────────────────────────────
 static func _pageant(h: Node3D) -> void:
 	var gold: Material = TreasuryKit.mats()["gold"]
 	var disc := MeshUtils.make_cylinder(0.2, 0.21, 0.04, TreasuryKit.mats()["black_velvet"], 48)
@@ -662,7 +662,7 @@ static func _pageant(h: Node3D) -> void:
 	root.add_child(TreasuryKit.collet_node(cols, gold))
 	root.add_child(GemFactory.make_set(items))
 
-# â”€â”€ sapphire kokoshnik on a black velvet head form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── sapphire kokoshnik on a black velvet head form ─────────────────────────
 static func _kokoshnik(h: Node3D) -> void:
 	var vel: Material = TreasuryKit.mats()["black_velvet"]
 	var stand := MeshUtils.make_cylinder(0.04, 0.06, 0.08, vel, 24)

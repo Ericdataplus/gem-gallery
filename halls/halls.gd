@@ -1,7 +1,7 @@
 class_name Halls
 
 # â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-# HALLS â€” the gallery's floor plan. Each hall is one recipe that draws into a
+# HALLS — the gallery's floor plan. Each hall is one recipe that draws into a
 # HallBuilder at bake time and becomes res://baked/<id>.scn. World coordinates
 # are kept absolute, so a baked hall drops in at the origin.
 #
@@ -44,7 +44,7 @@ static func build(id: String, hb: HallBuilder, L: Dictionary) -> void:
 		"treasury": _treasury(hb, L)
 		"collector": _collector(hb, L)
 
-# â”€â”€ raw specimens laid out in rows on the void floor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── raw specimens laid out in rows on the void floor ────────────────────────
 static func _specimens(hb: HallBuilder, L: Dictionary) -> void:
 	var cat := MineralLibrary.catalog()
 	for i in range(cat.size()):
@@ -75,7 +75,7 @@ static func _specimens(hb: HallBuilder, L: Dictionary) -> void:
 	hb.shot(Vector3(0, 0, -2.5), Vector3(0, 0.6, 8.0), "s_entrance")
 	hb.shot(Vector3(-6.0, 0, 7.0), Vector3(-8.4, 0.6, 12.0), "s_rows")
 
-# â”€â”€ cut catalogue, every stone, cabochons and the treasure heap â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── cut catalogue, every stone, cabochons and the treasure heap ────────────
 static func _cut_gems(hb: HallBuilder, L: Dictionary) -> void:
 	var z0: float = L["cut_z0"]
 	var velvet := StandardMaterial3D.new()
@@ -134,7 +134,7 @@ static func _gem_row(hb: HallBuilder, items: Array, z: float, step: float, title
 			hb.add_child(sl)
 			sl.look_at_from_position(Vector3(x + 0.6, 2.6, z - 1.2), Vector3(x, 0.1, z), Vector3.UP)
 
-# â”€â”€ collector displays around the specimen floor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── collector displays around the specimen floor ───────────────────────────
 static func _displays(hb: HallBuilder, L: Dictionary) -> void:
 	GalleryDisplays.build(hb, L["x_left"], L["x_right"], 2.0, L["display_back"])
 	var b: float = L["display_back"]
@@ -148,7 +148,7 @@ static func _displays(hb: HallBuilder, L: Dictionary) -> void:
 	hb.shots.append([Vector3(-2.2, 0, b - 1.7), PI, -0.5, "d_bowl"])
 	hb.shots.append([Vector3(2.2, 0, b - 1.4), PI, -0.32, "d_necklace"])
 
-# â”€â”€ the legendary gems hall â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── the legendary gems hall ─────────────────────────────────────────────────
 static func _legendary(hb: HallBuilder, L: Dictionary) -> void:
 	var z: float = L["hall_z"]
 	FamousGems.build_hall(hb, Vector3(0, 0, z))
@@ -156,7 +156,7 @@ static func _legendary(hb: HallBuilder, L: Dictionary) -> void:
 	hb.shot(Vector3(-0.6, 0, z + 1.5), Vector3(-2.0, 1.2, z + 1.5), "f_cullinan")
 	hb.shot(Vector3(0.6, 0, z + 6.3), Vector3(2.0, 1.2, z + 6.3), "f_hope")
 
-# â”€â”€ Egypt, Maya and the lapis & jade boutique â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Egypt, Maya and the lapis & jade boutique ───────────────────────────────
 static func _ancient(hb: HallBuilder, L: Dictionary) -> void:
 	var z: float = L["hall_z"]
 	AncientTreasures.build(hb, Vector3(0, 0, z))
@@ -167,7 +167,7 @@ static func _ancient(hb: HallBuilder, L: Dictionary) -> void:
 	for i in range(right.size()):
 		hb.shot(Vector3(6.6, 0, z + 1.6 + float(i) * 3.0), Vector3(7.6, 1.2, z + 1.6 + float(i) * 3.0), "b_%s" % right[i][0])
 
-# â”€â”€ the two newest halls share the TreasuryKit plinth layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── the two newest halls share the TreasuryKit plinth layout ───────────────
 static func _kit_shots(hb: HallBuilder, pieces: Array, z0: float, prefix: String) -> void:
 	for i in range(pieces.size()):
 		var side := -1.0 if i % 2 == 0 else 1.0

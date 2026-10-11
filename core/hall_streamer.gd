@@ -1,4 +1,4 @@
-﻿class_name HallStreamer
+class_name HallStreamer
 extends Node3D
 
 ## Keeps only the halls near the player in the scene. Baked hall scenes load on

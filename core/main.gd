@@ -1,13 +1,13 @@
-﻿extends Node3D
+extends Node3D
 
 # â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-# GEM GALLERY â€” runtime entry. Nothing is generated here: halls are baked
+# GEM GALLERY — runtime entry. Nothing is generated here: halls are baked
 # scenes (res://baked/, made by res://bake/bake.tscn) that stream in around the
 # player. Startup = loading screen -> environment -> the halls near the
 # entrance -> walk. Everything else streams in the background.
 #
-#   WASD walk Â· Shift run Â· Space jump Â· mouse look Â· E pick up a gem
-#   F labels Â· Esc/Tab free the mouse (click to recapture) Â· Q quit
+#   WASD walk · Shift run · Space jump · mouse look · E pick up a gem
+#   F labels · Esc/Tab free the mouse (click to recapture) · Q quit
 #   GALLERY_SHOT=1 [GALLERY_ONLY=prefixes]   check renders (core/shots.gd)
 #   GALLERY_PROFILE=1                        print startup timings and quit
 # â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•

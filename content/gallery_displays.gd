@@ -1,7 +1,7 @@
 class_name GalleryDisplays
 
 # â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-# GALLERY DISPLAYS â€” collector-style displays for the gem gallery, modelled on
+# GALLERY DISPLAYS — collector-style displays for the gem gallery, modelled on
 # real ones: a framed gem-box case, a rainbow sapphire line on white felt, a
 # loose parcel on black velvet with signet rings and coins, a light-box parcel,
 # amethyst cathedrals on metal stands, Okorusu fluorite on acrylic blocks, a
@@ -73,7 +73,7 @@ static func _mats() -> Dictionary:
 		"red_enamel": red_enamel, "acrylic": acrylic, "lightbox": lightbox}
 	return _m
 
-# â”€â”€ shared bits â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── shared bits ──────────────────────────────────────────────────────────────
 static func _box(parent: Node3D, size: Vector3, pos: Vector3, mat: Material, collide := false) -> MeshInstance3D:
 	var mi := MeshUtils.make_rounded_box(size, -1.0, mat)
 	mi.position = pos
@@ -126,7 +126,7 @@ static func build(g: Node3D, x_left: float, x_right: float, z_start: float, z_ba
 	_shop_bins(g, Vector3(x_right, 0, z_start + 24.5))
 	_glass_case(g, Vector3(x_left, 0, z_start + 28.0))
 
-# â”€â”€ 1. framed gem-box case on a wall (faces +X) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── 1. framed gem-box case on a wall (faces +X) ─────────────────────────────
 static func _gem_case(g: Node3D, base: Vector3) -> void:
 	var mats := _mats()
 	var root := Node3D.new()
@@ -196,7 +196,7 @@ static func _mm(mesh: Mesh, xfs: Array, mat: Material) -> MultiMeshInstance3D:
 	mmi.material_override = mat
 	return mmi
 
-# â”€â”€ 2. rainbow sapphire line on white felt â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── 2. rainbow sapphire line on white felt ──────────────────────────────────
 static func _rainbow(g: Node3D, pos: Vector3) -> void:
 	var mats := _mats()
 	var top := _table(g, pos, Vector2(1.3, 1.0), mats["felt"])
@@ -214,7 +214,7 @@ static func _rainbow(g: Node3D, pos: Vector3) -> void:
 	_spot(g, pos + Vector3(0.8, 2.6, -0.6), pos + Vector3(0, top, 0), 2.2)
 	g._label("Rainbow sapphires on white felt", pos + Vector3(0, 1.45, -0.5), 0.0022)
 
-# â”€â”€ 3. loose parcel on black velvet with signet rings and coins â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── 3. loose parcel on black velvet with signet rings and coins ─────────────
 const PARCEL_MIX := [["citrine", 6], ["lemon_quartz", 3], ["pale_amethyst", 6], ["rose_quartz", 3], ["white_topaz", 4],
 	["smoky_quartz", 4], ["peridot", 4], ["carnelian", 3], ["green_onyx", 1], ["garnet", 3], ["morganite", 2],
 	["blue_topaz", 2], ["amethyst", 2]]
@@ -297,7 +297,7 @@ static func _signet(root: Node3D, at: Vector3, stone: String, yaw: float) -> voi
 	var set := GemFactory.make_set([[stone, "emerald", Transform3D(Basis(Vector3.UP, PI * 0.5).scaled(Vector3.ONE * 0.06), Vector3(0, ro + 0.02, 0))]])
 	ring.add_child(set)
 
-# â”€â”€ 4. light-box parcel (stones over a glowing white panel) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── 4. light-box parcel (stones over a glowing white panel) ────────────────
 static func _lightbox_parcel(g: Node3D, pos: Vector3) -> void:
 	var mats := _mats()
 	var top := _table(g, pos, Vector2(1.5, 1.2), mats["lightbox"])
@@ -308,7 +308,7 @@ static func _lightbox_parcel(g: Node3D, pos: Vector3) -> void:
 	g.add_child(set)
 	g._label("Light box parcel", pos + Vector3(0, 1.5, -0.6), 0.0022)
 
-# â”€â”€ 5. amethyst cathedrals on black metal stands â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── 5. amethyst cathedrals on black metal stands ───────────────────────────
 static func _cathedrals(g: Node3D, pos: Vector3) -> void:
 	var mats := _mats()
 	var sizes := [1.5, 1.15, 1.35, 0.95]
@@ -324,7 +324,7 @@ static func _cathedrals(g: Node3D, pos: Vector3) -> void:
 		_spot(g, p + Vector3(2.0, 2.8, 0), p + Vector3(0, s * 0.5, 0), 4.0, 22.0)
 	g._label("Amethyst cathedrals  -  Artigas, Uruguay", pos + Vector3(0.3, 2.0, 2.4), 0.0026)
 
-# â”€â”€ 6. Okorusu fluorite on clear acrylic blocks â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── 6. Okorusu fluorite on clear acrylic blocks ─────────────────────────────
 static func _fluorite_table(g: Node3D, pos: Vector3) -> void:
 	var mats := _mats()
 	var top := _table(g, pos, Vector2(1.8, 1.3), mats["wood"])
@@ -351,7 +351,7 @@ static func _fluorite_table(g: Node3D, pos: Vector3) -> void:
 	_spot(g, pos + Vector3(-0.9, 2.8, -1.0), pos + Vector3(0, top, 0), 5.0, 34.0)
 	g._label("Okorusu fluorite on acrylic blocks", pos + Vector3(0, 1.65, -0.7), 0.0022)
 
-# â”€â”€ 7. Mughal-style jewelled bowl: green enamel, gold, ~800 diamonds â”€â”€â”€â”€â”€â”€â”€
+# ── 7. Mughal-style jewelled bowl: green enamel, gold, ~800 diamonds ───────
 static func _jewel_band(items: Array, prof: Array, t0: float, t1: float, rows: int, spacing: float, size: float, cut: String, stone: String, phase: float) -> void:
 	# stones along a revolved profile (Vector2 radius, y) between params t0..t1
 	for r in range(rows):
@@ -418,7 +418,7 @@ static func _mughal_bowl(g: Node3D, pos: Vector3) -> void:
 	_spot(g, pos + Vector3(1.2, 2.4, -0.6), pos + Vector3(0, top + 0.3, 0), 3.0, 24.0)
 	g._label("Jewelled bowl  -  Mughal style, green enamel and diamonds", pos + Vector3(0, 1.95, -0.6), 0.0022)
 
-# â”€â”€ 8. diamond bib necklace on a black velvet bust â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── 8. diamond bib necklace on a black velvet bust ─────────────────────────
 static func _necklace(g: Node3D, pos: Vector3) -> void:
 	var mats := _mats()
 	var top := _table(g, pos, Vector2(1.3, 1.1), mats["black"], 0.85)
@@ -480,7 +480,7 @@ static func _necklace(g: Node3D, pos: Vector3) -> void:
 	_spot(g, pos + Vector3(-0.9, 2.2, -1.0), pos + Vector3(0, top + 0.45, 0), 3.0, 22.0)
 	g._label("Diamond bib necklace", pos + Vector3(0, 2.0, -0.4), 0.0022)
 
-# â”€â”€ 9. ornate two-tone emerald ring (oxidised silver + gold, emerald halo) â”€â”€
+# ── 9. ornate two-tone emerald ring (oxidised silver + gold, emerald halo) ──
 static func _emerald_ring(g: Node3D, pos: Vector3) -> void:
 	var mats := _mats()
 	var mirror := StandardMaterial3D.new()
@@ -566,7 +566,7 @@ static func _emerald_ring(g: Node3D, pos: Vector3) -> void:
 	_spot(g, pos + Vector3(0.8, 2.0, -0.4), pos + Vector3(0, top + 0.15, 0), 2.5, 18.0)
 	g._label("Emerald ring  -  oxidised silver and gold, emerald halo", pos + Vector3(0, 1.75, -0.3), 0.0019)
 
-# â”€â”€ 10. rock-shop bins: old tin loaf pans on a wooden counter, priced â”€â”€â”€â”€â”€â”€â”€
+# ── 10. rock-shop bins: old tin loaf pans on a wooden counter, priced ───────
 static func _pan(parent: Node3D, center: Vector3, size: Vector2, tin: Material) -> void:
 	var h := 0.09
 	var t := 0.006
@@ -661,7 +661,7 @@ static func _shop_bins(g: Node3D, pos: Vector3) -> void:
 	_spot(g, pos + Vector3(-1.2, 2.8, 0), pos + Vector3(0, top, 0), 6.0, 40.0)
 	g._label("Rock shop bins", pos + Vector3(0, 1.6, -1.2), 0.0024)
 
-# â”€â”€ 11. glass display case: malachite, lapis, aquamarine, onyx, apatite... â”€â”€
+# ── 11. glass display case: malachite, lapis, aquamarine, onyx, apatite... ──
 static func _glass_case(g: Node3D, pos: Vector3) -> void:
 	var mats := _mats()
 	var top := _table(g, pos, Vector2(1.2, 2.4), mats["dark_wood"], 0.95)
@@ -734,7 +734,7 @@ static func _glass_case(g: Node3D, pos: Vector3) -> void:
 	_spot(g, pos + Vector3(1.2, 2.8, 0), pos + Vector3(0, top, 0), 6.0, 42.0)
 	g._label("Glass case  -  malachite, lapis, aquamarine, apatite, onyx, bismuth", pos + Vector3(0, 1.7, -1.3), 0.0022)
 
-# â”€â”€ 12. spiderweb turquoise freeform on a velvet pedestal (pick it up: E) â”€â”€
+# ── 12. spiderweb turquoise freeform on a velvet pedestal (pick it up: E) ──
 static func _turquoise(g: Node3D, pos: Vector3) -> void:
 	var mats := _mats()
 	var top := _table(g, pos, Vector2(0.55, 0.55), mats["velvet"], 1.05)

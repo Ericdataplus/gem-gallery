@@ -1,7 +1,7 @@
 class_name CollectorWing
 
 # â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-# COLLECTOR'S WING â€” loose-stone boxes and trays, rings and high jewellery,
+# COLLECTOR'S WING — loose-stone boxes and trays, rings and high jewellery,
 # mineral specimens, a gem-show booth, a Roman coin hoard, Byzantine and Moche
 # gold, a Dendera relief and the Patiala necklace. Each piece follows one of
 # the reference photos.
@@ -97,7 +97,7 @@ static func _sph(parent: Node3D, mat: Material, pos: Vector3, scl: Vector3) -> M
 	parent.add_child(mi)
 	return mi
 
-# â”€â”€ loose-stone boxes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── loose-stone boxes ───────────────────────────────────────────────────────
 static func _cluster_box(h: Node3D) -> void:
 	var top := TreasuryKit.gem_box(h, Vector2(0.4, 0.34), TreasuryKit.crystal(Color(0.95, 0.97, 1.0), 0.0, 0.05), M("grey_velvet"), 0.5)
 	var it := []
@@ -197,7 +197,7 @@ static func _hex_pair(h: Node3D) -> void:
 	TreasuryKit.gem(it, "rhodolite", "hexagon", Vector3(0.09, 0.03, 0.0), UP, Vector3(0.35, 0, -1).normalized(), 0.08)
 	tray.add_child(GemFactory.make_set(it))
 
-# â”€â”€ necklaces on boards and busts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── necklaces on boards and busts ───────────────────────────────────────────
 static func _leaf() -> Mesh:
 	return RoyalTreasury._leaf_mesh()
 
@@ -453,7 +453,7 @@ static func _aqua_pendant(h: Node3D) -> void:
 	b.add_child(GemFactory.make_set(it))
 	var _p := plat
 
-# â”€â”€ rings, brooch, bracelet â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── rings, brooch, bracelet ─────────────────────────────────────────────────
 static func _sapphire_rings(h: Node3D) -> void:
 	var stand := MeshUtils.make_cylinder(0.042, 0.042, 0.34, M("white_foam"), 32)
 	stand.position.y = 0.17
@@ -613,7 +613,7 @@ static func _byz(h: Node3D) -> void:
 	root.add_child(TreasuryKit.balls(claws, gold))
 	root.add_child(GemFactory.make_set(it))
 
-# â”€â”€ coin hoard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── coin hoard ──────────────────────────────────────────────────────────────
 static func _coins(h: Node3D) -> void:
 	var wood: Material = M("mahogany")
 	var felt: Material = M("red_felt")
@@ -679,7 +679,7 @@ static func _coins(h: Node3D) -> void:
 	mmi.material_override = ShopStones.material("coin_silver")
 	h.add_child(mmi)
 
-# â”€â”€ Lord of Sipan regalia â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Lord of Sipan regalia ───────────────────────────────────────────────────
 static func _sipan(h: Node3D) -> void:
 	var gold: Material = M("gold")
 	var silver: Material = M("platinum")
@@ -768,7 +768,7 @@ static func _dendera(h: Node3D) -> void:
 	panel.position = Vector3(0, 0.56, 0)
 	h.add_child(panel)
 
-# â”€â”€ mineral specimens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── mineral specimens ───────────────────────────────────────────────────────
 static func _matrix(h: Node3D, mat: Material, scl: Vector3, pos: Vector3, v := 2) -> MeshInstance3D:
 	var mi := MeshInstance3D.new()
 	mi.mesh = ShopStones.tumbled_mesh(v)
@@ -860,7 +860,7 @@ static func _am_flower(h: Node3D) -> void:
 		TreasuryKit.ball(balls, Vector3(-0.018 + rng.randf_range(-0.006, 0.006), 0.07 + rng.randf() * 0.12, rng.randf_range(-0.012, 0.012)), rng.randf_range(0.004, 0.007))
 	h.add_child(TreasuryKit.balls(balls, goe))
 
-# â”€â”€ gem show booth â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── gem show booth ──────────────────────────────────────────────────────────
 static func _booth(h: Node3D) -> void:
 	var navy := MeshUtils.make_rounded_box(Vector3(1.9, 0.74, 0.8), 0.01, M("navy_cloth"))
 	navy.position = Vector3(0, 0.37, 0.05)
