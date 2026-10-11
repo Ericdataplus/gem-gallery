@@ -13,7 +13,7 @@ is preserved in that repo at commit `415d7ae`.
 godot --path . --screen 1
 ```
 
-WASD walk Â· Shift run Â· Space jump Â· mouse look Â· E pick up a gem Â· F labels Â·
+WASD walk · Shift run · Space jump · mouse look · E pick up a gem · F labels ·
 Esc/Tab free the mouse (click to recapture) Â· Q quit.
 
 ## How it is built
@@ -57,7 +57,7 @@ Images land in `images/`. `GALLERY_PROFILE=1` prints startup and streaming timin
 
 - **Startup** loads only the hall you spawn in. The rest stream in on worker threads,
   within 40 m of the player, and are freed beyond 70 m.
-- **Godot 4.7 recompiles every material shader on every launch**, at roughly 0.3â€“0.5 s
+- **Godot 4.7 recompiles every material shader on every launch**, at roughly 0.3–0.5 s
   for a heavy procedural one. The disk shader cache does not help here. Keep the
   number of distinct shaders small: the rock species share one shader
   (`RockShaders.uber_shader`), and polished stones share `ShopStones`.
