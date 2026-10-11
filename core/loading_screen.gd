@@ -22,6 +22,9 @@ func _ready() -> void:
 	bar_bg.position = Vector2(-300, 50)
 	bar_bg.size = Vector2(600, 10)
 	add_child(bar_bg)
+	var note := _centered("The first launch on a new PC can take a minute while the graphics card prepares its shaders.",
+		16, Color(0.6, 0.6, 0.64), Vector2(-450, 90), Vector2(900, 30))
+	note.name = "Note"
 	_bar = ColorRect.new()
 	_bar.color = Color(0.85, 0.68, 0.32)
 	_bar.set_anchors_preset(Control.PRESET_CENTER)

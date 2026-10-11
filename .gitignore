@@ -11,3 +11,6 @@ images/
 # Python / OS
 __pycache__/
 .DS_Store
+
+# Shareable build (see README)
+dist/
