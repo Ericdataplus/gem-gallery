@@ -106,33 +106,36 @@ static func _cut_gems(hb: HallBuilder, L: Dictionary) -> void:
 		hl.position = Vector3((float(k) - 1.0) * 2.0, 3.2, z0 + 12.2)
 		hb.add_child(hl)
 	hb._label("Treasure heap  -  every stone, every cut", Vector3(0, 1.9, z0 + 13.5), 0.0025)
-	hb.shots.append([Vector3(-3.0, 0, z0 - 1.6), PI + 0.2, -0.45, "cuts_row"])
-	hb.shots.append([Vector3(2.0, 0, z0 + 2.6), PI - 0.1, -0.5, "stones_row"])
+	hb.shots.append([Vector3(-3.0, 0, z0 - 1.6), PI + 0.2, -0.22, "cuts_row"])
+	hb.shots.append([Vector3(2.0, 0, z0 + 2.6), PI - 0.1, -0.25, "stones_row"])
 	hb.shots.append([Vector3(0, 0, z0 + 10.0), PI, -0.55, "cut_heap"])
+
+## One row of gems, each on a waist-high pedestal with a turntable and pin
+## lights (the visitor faces +z when walking in, so the lights sit on the -z side).
+const PEDESTAL_H := 0.82
 
 static func _gem_row(hb: HallBuilder, items: Array, z: float, step: float, title: String) -> void:
 	var n := items.size()
-	hb._label(title, Vector3(-float(n - 1) * 0.5 * step - 1.6, 0.9, z), 0.0026)
+	var dm: Dictionary = GalleryDisplays._mats()
+	hb._label(title, Vector3(-float(n - 1) * 0.5 * step - 1.6, PEDESTAL_H + 0.7, z), 0.0026)
 	for i in range(n):
 		var stone: String = items[i][0]
 		var cut: String = items[i][1]
 		var x := (float(i) - float(n - 1) * 0.5) * step
-		var size := 0.16
+		var size := 0.12
+		var pw := minf(step * 0.62, 0.36)
+		GalleryDisplays._box(hb, Vector3(pw, PEDESTAL_H, pw), Vector3(x, PEDESTAL_H * 0.5, z), dm["black"], true)
+		var spin := Turntable.stand(hb, Vector3(x, PEDESTAL_H, z), minf(pw * 0.42, 0.15), 0.035, 0.45 + 0.07 * float(i % 4))
+		spin.rotation.y = float(i) * 0.9
 		var g := GemFactory.make_gem(stone, cut, size)
-		g.position = Vector3(x, 0, z)
-		g.rotation.y = float(i) * 0.6
-		hb.add_child(g)
-		hb.add_inspect_spot(g.position + Vector3(0, size * 0.8, 0), stone, cut, g)
+		g.position.y = 0.014 + (0.0 if cut == "cabochon" else size * 0.12)
+		g.rotation.x = 0.0 if cut == "cabochon" else -0.3
+		spin.add_child(g)
+		Turntable.no_shadow(g)
+		hb.add_inspect_spot(spin.position + Vector3(0, size * 0.8, 0), stone, cut, g)
 		var nice := stone.replace("_", " ").capitalize().replace("Sapph", "Sapphire")
-		hb._label("%s\n%s" % [nice, GemCuts.NAMES.get(cut, cut)], Vector3(x, 0.58, z - 0.1), 0.0016)
-		if i % 2 == 0:
-			var sl := SpotLight3D.new()
-			sl.light_color = Color(1.0, 0.98, 0.95)
-			sl.light_energy = 6.0
-			sl.spot_range = 5.0
-			sl.spot_angle = 18.0
-			hb.add_child(sl)
-			sl.look_at_from_position(Vector3(x + 0.6, 2.6, z - 1.2), Vector3(x, 0.1, z), Vector3.UP)
+		hb._label("%s\n%s" % [nice, GemCuts.NAMES.get(cut, cut)], Vector3(x, PEDESTAL_H + 0.42, z), 0.0016)
+		Turntable.pin_lights(hb, spin.position + Vector3(0, size * 0.6, 0), Vector3(0, 0, -1), 3.5)
 
 # ── collector displays around the specimen floor ───────────────────────────
 static func _displays(hb: HallBuilder, L: Dictionary) -> void:

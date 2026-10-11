@@ -56,10 +56,13 @@ const PIECES := [
 		"Glass shelves of clear and smoky quartz clusters, crystal balls, and trays of points on a navy-draped table.", Vector3(2.2, 0.04, 1.1)],
 ]
 
+## Pieces that turn on a turntable.
+const SPIN := ["sapphire_rings", "jade_ring", "tanzanite_brooch", "byz_bracelet", "anglesite", "pyromorphite", "amethyst_flower"]
+
 static func build(g: Node3D, start: Vector3) -> float:
 	TreasuryKit.register()
 	return TreasuryKit.hall(g, start, PIECES, "The Collector's Wing  -  loose stones, jewels, minerals and antiquities",
-		func(k: String, hh: Node3D) -> void: _make(k, hh), Color(0.05, 0.08, 0.16))
+		func(k: String, hh: Node3D) -> void: _make(k, hh), Color(0.05, 0.08, 0.16), SPIN)
 
 static func _make(key: String, h: Node3D) -> void:
 	match key:

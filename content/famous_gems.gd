@@ -157,17 +157,20 @@ static func build_hall(g: Node3D, start: Vector3) -> void:
 		var size := real_radius(float(e["ct"]), float(e["sg"])) * SCALE
 		var cut: String = e["cut"]
 		var gcut := "cabochon" if cut.begins_with("cabochon") else cut
-		var holder := Node3D.new()
-		holder.position = base + Vector3(0, top + 0.03, 0)
-		holder.rotation = Vector3(0, -side * PI * 0.5, 0)
-		g.add_child(holder)
+		# the stone turns slowly on a velvet turntable under its own pin lights,
+		# tilted so the table, crown and pavilion all swing through the light
+		var holder := Turntable.stand(g, base + Vector3(0, top + 0.02, 0), clampf(size * 1.25, 0.1, 0.22), 0.045, 0.42 + 0.06 * float(i % 3))
+		holder.rotation.y = float(i) * 1.3
 		var stone := GemFactory.make_gem(e["key"], gcut, size)
-		stone.rotation.x = 0.0 if gcut == "crystal12" else -0.35
+		stone.position.y = 0.014 + (0.0 if gcut == "cabochon" else size * 0.12)
+		stone.rotation.x = 0.0 if gcut == "crystal12" or gcut == "cabochon" else -0.3
 		holder.add_child(stone)
+		Turntable.no_shadow(stone)
 		if g.has_method("add_inspect_spot"):
 			g.add_inspect_spot(holder.position + Vector3(0, size, 0), e["key"], gcut, stone)
-		# jeweller's spot from the aisle side
+		# jeweller's spot from the aisle side, plus the turntable's pin lights
 		GalleryDisplays._spot(g, base + Vector3(-side * 1.3, 2.9, -0.4), holder.position, 5.0, 14.0)
+		Turntable.pin_lights(g, holder.position + Vector3(0, size * 0.7, 0), Vector3(-side, 0, 0), 3.5)
 		# plaque on the aisle face of the plinth
 		var lb := Label3D.new()
 		lb.text = "%s\n%.2f ct  -  %s\n%s\n%s\n%s" % [e["name"], float(e["ct"]), GemCuts.NAMES.get(gcut, "Crystal" if gcut == "crystal12" else gcut),

@@ -18,6 +18,7 @@ var player: GalleryPlayer
 var hud: GalleryHud
 var streamer: HallStreamer
 var inspector: GemInspector
+var spinner: Spinner
 var manifest: Resource
 var labels_on := true
 var _t0 := 0
@@ -52,6 +53,9 @@ func _ready() -> void:
 	inspector.player = player
 	inspector.hud = hud
 	add_child(inspector)
+	spinner = Spinner.new()
+	spinner.cam = player.cam
+	add_child(spinner)
 	streamer = HallStreamer.new()
 	add_child(streamer)
 	streamer.setup(manifest, player)
@@ -107,6 +111,7 @@ func _profile_streaming() -> void:
 
 func _on_hall_added(id: String, node: Node3D) -> void:
 	inspector.add_hall(id, node)
+	spinner.add_hall(node)
 	if not labels_on:
 		for lb in node.find_children("*", "Label3D", true, false):
 			(lb as Label3D).visible = false
