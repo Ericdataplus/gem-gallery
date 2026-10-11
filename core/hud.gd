@@ -4,6 +4,8 @@ extends CanvasLayer
 ## Controls hint, click-to-look prompt, crosshair, the inspect caption and a
 ## small "streaming" note while a hall loads in the background. Every control
 ## ignores the mouse so it can never swallow look input.
+## (Controls are positioned BEFORE being added: anchored positions set after
+## add_child would be taken as absolute coordinates.)
 
 var click_hint: Label
 var inspect_label: Label
@@ -12,16 +14,20 @@ var stream_label: Label
 func _ready() -> void:
 	var hint := _label("WASD walk · Shift run · Space jump · Mouse look · E pick up a gem · F labels · Esc release mouse · Q quit", 16, Color(0.85, 0.85, 0.85, 0.8))
 	hint.position = Vector2(16, 12)
+	add_child(hint)
 	click_hint = _label("Click to look around  (Esc or Tab frees the mouse)", 28, Color(1, 1, 1, 0.9))
 	click_hint.set_anchors_preset(Control.PRESET_CENTER)
 	click_hint.position = Vector2(-330, 40)
+	add_child(click_hint)
 	inspect_label = _label("", 22, Color(1, 1, 1, 0.92))
 	inspect_label.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	inspect_label.position += Vector2(-420, -90)
 	inspect_label.visible = false
+	add_child(inspect_label)
 	stream_label = _label("", 16, Color(0.9, 0.8, 0.55, 0.85))
 	stream_label.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
 	stream_label.position += Vector2(16, -34)
+	add_child(stream_label)
 	var dot := ColorRect.new()
 	dot.color = Color(1, 1, 1, 0.5)
 	dot.size = Vector2(4, 4)
@@ -36,7 +42,6 @@ func _label(text: String, size: int, col: Color) -> Label:
 	l.add_theme_font_size_override("font_size", size)
 	l.add_theme_color_override("font_color", col)
 	l.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(l)
 	return l
 
 func on_capture_changed(captured: bool) -> void:

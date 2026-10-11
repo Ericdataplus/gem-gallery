@@ -83,6 +83,7 @@ func _ready() -> void:
 		get_tree().quit()
 		return
 	if shooting:
+		hud.visible = OS.get_environment("GALLERY_HUD") != ""   # clean renders unless asked
 		GalleryShots.run(self, streamer, player, manifest)
 
 ## Profile mode: stand at the entrance while the neighbouring halls stream in,
