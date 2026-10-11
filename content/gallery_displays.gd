@@ -318,6 +318,7 @@ static func _cathedrals(g: Node3D, pos: Vector3) -> void:
 		_box(g, Vector3(0.5, 0.05, 0.42), p + Vector3(0, 0.025, 0), mats["black"], true)
 		_box(g, Vector3(0.06, s * 0.55, 0.06), p + Vector3(-0.12, s * 0.275 + 0.05, 0), mats["black"])
 		var spec := MineralLibrary.make("amethyst_cathedral", s, 11 + i)
+		Turntable.mark(spec, 0.3 + 0.05 * float(i), 0.0, 0.6)
 		spec.position = p + Vector3(0, 0.05 + s * 0.1, 0)
 		spec.rotation.y = PI * 0.5
 		g.add_child(spec)
@@ -339,6 +340,7 @@ static func _fluorite_table(g: Node3D, pos: Vector3) -> void:
 		spec.position = bp + Vector3(0, bh * 0.5 + s * 0.06, 0)
 		spec.rotation.y = float(i) * 1.3
 		g.add_child(spec)
+		Turntable.mark(spec, 0.3)
 		var lb := Label3D.new()
 		lb.text = "Fluorite\nOkorusu Mine, Namibia"
 		lb.font_size = 22
@@ -383,6 +385,7 @@ static func _mughal_bowl(g: Node3D, pos: Vector3) -> void:
 	var root := Node3D.new()
 	root.position = pos + Vector3(0, top, 0)
 	g.add_child(root)
+	Turntable.mark(root, 0.3)
 	var plate := [Vector2(0.0, 0.10), Vector2(0.55, 0.10), Vector2(0.60, 0.115), Vector2(0.61, 0.13), Vector2(0.56, 0.135), Vector2(0.0, 0.125)]
 	var bowl := [Vector2(0.10, 0.13), Vector2(0.13, 0.17), Vector2(0.22, 0.21), Vector2(0.29, 0.29), Vector2(0.31, 0.37), Vector2(0.315, 0.40)]
 	var lid := [Vector2(0.325, 0.40), Vector2(0.33, 0.425), Vector2(0.30, 0.47), Vector2(0.22, 0.53), Vector2(0.10, 0.565), Vector2(0.0, 0.575)]
@@ -425,6 +428,7 @@ static func _necklace(g: Node3D, pos: Vector3) -> void:
 	var bust := Node3D.new()
 	bust.position = pos + Vector3(0, top, 0)
 	g.add_child(bust)
+	Turntable.mark(bust, 0.45, 0.0, 0.6)
 	var torso_prof := [Vector2(0.0, 0.0), Vector2(0.30, 0.0), Vector2(0.34, 0.22), Vector2(0.31, 0.45),
 		Vector2(0.18, 0.56), Vector2(0.10, 0.60), Vector2(0.095, 0.95), Vector2(0.0, 0.97)]
 	var torso := MeshUtils.make_revolved(torso_prof, mats["velvet"], 64)
@@ -513,6 +517,7 @@ static func _emerald_ring(g: Node3D, pos: Vector3) -> void:
 	ring.position = pos + Vector3(0, top + ro, 0)
 	ring.rotation = Vector3(0.0, -0.5, 0.0)
 	g.add_child(ring)
+	Turntable.mark(ring, 0.4)
 	var band := MeshUtils.make_revolved([Vector2(ri, -w), Vector2(ro, -w * 1.15), Vector2(ro + 0.012, -w * 0.5),
 		Vector2(ro + 0.012, w * 0.5), Vector2(ro, w * 1.15), Vector2(ri, w), Vector2(ri, -w)], oxsilver, 72)
 	band.rotation.z = PI * 0.5
@@ -742,6 +747,7 @@ static func _turquoise(g: Node3D, pos: Vector3) -> void:
 	pc.position = pos + Vector3(0, top + 0.012, 0)
 	pc.rotation = Vector3(0.0, 0.6, 0.0)
 	g.add_child(pc)
+	Turntable.mark(pc, 0.35)
 	if g.has_method("add_inspect_spot"):
 		g.add_inspect_spot(pc.position + Vector3(0, 0.02, 0), "shop:turquoise_web", "Freeform cabochon", pc)
 	_spot(g, pos + Vector3(-0.5, 2.2, -0.7), pos + Vector3(0, top, 0), 4.0, 16.0)

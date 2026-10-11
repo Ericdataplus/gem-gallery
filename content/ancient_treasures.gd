@@ -66,6 +66,11 @@ const BOUTIQUE := [
 	["jade_bracelet", "Jade Macrame Bracelet", "Square cut beads on cord", "Square jade beads knotted on black cord with a gold bar."],
 ]
 
+## Pieces on tilted boards or busts: they sway rather than turn, so their
+## plain backs never face the visitor.
+const FLAT := ["jade_plaque", "pectoral", "jade_necklace", "slabs", "broad_collar", "lapis_beads", "jade_beads",
+	"mask", "triple", "relief", "obsidian_mirror", "pouch"]
+
 static var _gold: StandardMaterial3D
 
 static func gold() -> StandardMaterial3D:
@@ -98,6 +103,10 @@ static func build(g: Node3D, start: Vector3) -> void:
 			holder.rotation.y = -side * PI * 0.5          # local +Z faces the hall
 			g.add_child(holder)
 			_make(String(e[0]), holder)
+			# every piece moves: free-standing ones turn, boards and busts sway
+			var flat: bool = FLAT.has(e[0])
+			Turntable.animate(holder, flat, i, 0.0 if flat else 0.26)
+			Turntable.pin_lights(g, holder.position + Vector3(0, 0.2, 0), Vector3(-side, 0, 0), 1.6)
 			GalleryDisplays._spot(g, base + Vector3(-side * 1.6, 2.9, -0.5), holder.position + Vector3(0, 0.15, 0), 2.6, 18.0)
 			var lb := Label3D.new()
 			lb.text = "%s\n%s\n%s" % [e[1], e[2], e[3]]

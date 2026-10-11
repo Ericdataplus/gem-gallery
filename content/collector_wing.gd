@@ -56,13 +56,16 @@ const PIECES := [
 		"Glass shelves of clear and smoky quartz clusters, crystal balls, and trays of points on a navy-draped table.", Vector3(2.2, 0.04, 1.1)],
 ]
 
-## Pieces that turn on a turntable.
-const SPIN := ["sapphire_rings", "jade_ring", "tanzanite_brooch", "byz_bracelet", "anglesite", "pyromorphite", "amethyst_flower"]
+## Every piece moves (see TreasuryKit.hall); flat ones sway, the booth stays put
+## (its shelf specimens turn on their own).
+const FLAT := ["cluster_box", "spinel_box", "chopard", "orange_tray", "aqua_pendant", "peacock_necklace",
+	"rainbow_circles", "hex_pair", "coin_hoard", "sipan", "dendera"]
+const STILL := ["gem_booth"]
 
 static func build(g: Node3D, start: Vector3) -> float:
 	TreasuryKit.register()
 	return TreasuryKit.hall(g, start, PIECES, "The Collector's Wing  -  loose stones, jewels, minerals and antiquities",
-		func(k: String, hh: Node3D) -> void: _make(k, hh), Color(0.05, 0.08, 0.16), SPIN)
+		func(k: String, hh: Node3D) -> void: _make(k, hh), Color(0.05, 0.08, 0.16), FLAT, STILL)
 
 static func _make(key: String, h: Node3D) -> void:
 	match key:
@@ -891,6 +894,7 @@ static func _booth(h: Node3D) -> void:
 			spec.position = Vector3(-0.7 + float(k) * 0.28 + rng.randf_range(-0.03, 0.03), float(shelves[si]) + 0.006, -0.14 + rng.randf_range(-0.05, 0.05))
 			spec.rotation.y = rng.randf() * TAU
 			h.add_child(spec)
+			Turntable.mark(spec, 0.35 + rng.randf() * 0.2)
 	var balls := []
 	for k in range(9):
 		TreasuryKit.ball(balls, Vector3(-0.72 + float(k) * 0.18, float(shelves[2]) + 0.05, -0.14), 0.04)

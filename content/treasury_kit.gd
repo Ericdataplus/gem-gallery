@@ -433,8 +433,10 @@ static func halo(items: Array, c: Vector3, ax: Vector3, ay: Vector3, radius: flo
 
 # ── hall layout: plinths on both sides of an aisle, spot-lit, with plaques ──
 ## list entries: [key, title, subtitle, note, Vector3(width, top, depth)]
-## spin: keys of pieces that sit on a turntable (whole piece turns, with pin lights).
-static func hall(g: Node3D, start: Vector3, list: Array, title: String, maker: Callable, carpet_col: Color, spin: Array = []) -> float:
+## Every piece moves under its own pin lights: free-standing pieces turn on a
+## velvet turntable, keys in `flat` (boards, boxes) sway so their fronts stay
+## toward you, and keys in `still` (whole stalls) stay put.
+static func hall(g: Node3D, start: Vector3, list: Array, title: String, maker: Callable, carpet_col: Color, flat: Array = [], still: Array = []) -> float:
 	var spacing := 3.4
 	var per_side := int(ceil(float(list.size()) / 2.0))
 	var length := float(per_side) * spacing + 3.0
@@ -461,8 +463,9 @@ static func hall(g: Node3D, start: Vector3, list: Array, title: String, maker: C
 		holder.rotation.y = -side * PI * 0.5
 		g.add_child(holder)
 		maker.call(String(e[0]), holder)
-		if spin.has(e[0]):
-			Turntable.mark(holder, 0.32 + 0.05 * float(i % 3), minf(pl.x, pl.z) * 0.4)
+		if not still.has(e[0]):
+			var is_flat: bool = flat.has(e[0])
+			Turntable.animate(holder, is_flat, i, 0.0 if is_flat else minf(pl.x, pl.z) * 0.4)
 			Turntable.pin_lights(g, holder.position + Vector3(0, 0.25, 0), Vector3(-side, 0, 0), 1.6)
 		GalleryDisplays._spot(g, base + Vector3(-side * 1.5, 2.9, -0.6), holder.position + Vector3(0, 0.22, 0), 4.0, 22.0)
 		var fill := SpotLight3D.new()

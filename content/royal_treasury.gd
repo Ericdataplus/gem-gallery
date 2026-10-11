@@ -52,13 +52,12 @@ const PIECES := [
 		"Two collector boxes sorted by colour, a neon apatite and a Miyakejima glass made with volcanic ash.", Vector3(1.2, 0.95, 0.8)],
 ]
 
-## Pieces that turn on a turntable (free-standing objects; boards and boxes stay still).
-const SPIN := ["isc", "st_edward", "hre", "emerald_crown", "pageant", "kokoshnik", "amethyst_egg", "galley",
-	"lapis_ewer", "crystal_ewer", "rainbow_obsidian", "galaxy"]
+## Every piece moves (see TreasuryKit.hall); these flat ones sway instead of turning.
+const FLAT := ["bulgari", "mackay", "kite_star", "mint_card", "hex_boxes"]
 
 static func build(g: Node3D, start: Vector3) -> float:
 	TreasuryKit.register()
-	return TreasuryKit.hall(g, start, PIECES, "The Royal Treasury  -  crowns, regalia and treasures", func(k: String, hh: Node3D) -> void: _make(k, hh), Color(0.22, 0.03, 0.06), SPIN)
+	return TreasuryKit.hall(g, start, PIECES, "The Royal Treasury  -  crowns, regalia and treasures", func(k: String, hh: Node3D) -> void: _make(k, hh), Color(0.22, 0.03, 0.06), FLAT)
 
 static func _make(key: String, h: Node3D) -> void:
 	match key:

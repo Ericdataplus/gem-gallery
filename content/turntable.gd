@@ -42,12 +42,26 @@ static func _disc(spin: Node3D, radius: float) -> void:
 	spin.add_child(stud)
 
 ## Make an existing node turn in place (for whole display pieces). Adds a
-## turning velvet disc under it.
-static func mark(n: Node3D, speed: float, disc_radius := 0.0) -> void:
+## turning velvet disc under it. swing > 0 sways +-swing radians instead of
+## turning fully (boards and boxes, so their plain backs never face you).
+## Moving pieces cast no shadow: a moving caster would make every shadowed
+## spotlight around it redraw its shadow map each frame.
+static func mark(n: Node3D, speed: float, disc_radius := 0.0, swing := 0.0, keep_shadows := false) -> void:
 	n.add_to_group(GROUP, true)
 	n.set_meta("spin_speed", speed)
+	if swing > 0.0:
+		n.set_meta("spin_swing", swing)
 	if disc_radius > 0.0:
 		_disc(n, disc_radius)
+	if not keep_shadows:     # (sun shadows redraw every frame anyway, so floor pieces keep theirs)
+		no_shadow(n)
+
+## Mark a piece by what it is: free-standing pieces turn, flat ones sway.
+static func animate(n: Node3D, flat: bool, i := 0, disc_radius := 0.0) -> void:
+	if flat:
+		mark(n, 0.45 + 0.05 * float(i % 3), 0.0, 0.7)
+	else:
+		mark(n, 0.32 + 0.05 * float(i % 3), disc_radius)
 
 ## Two narrow, shadowless jeweller's spots on the piece: a warm key from high
 ## on the viewer's side and a cool one from the other front corner. Moving

@@ -55,6 +55,9 @@ static func _specimens(hb: HallBuilder, L: Dictionary) -> void:
 		spec.position = slot(i)
 		spec.rotation.y = PI + float(i) * 0.7
 		hb.add_child(spec)
+		# specimens sway slowly in place so crystal faces flash; they keep their
+		# floor shadows (the sun's shadow redraws every frame anyway)
+		Turntable.mark(spec, 0.22 + 0.03 * float(i % 4), 0.0, 0.8, true)
 		var lb := Label3D.new()
 		lb.text = "%s\n%s" % [e.get("name", e["id"]), e.get("locality", "")]
 		lb.font_size = 36
@@ -99,6 +102,7 @@ static func _cut_gems(hb: HallBuilder, L: Dictionary) -> void:
 	var heap := GemFactory.make_pile(4242, 1.6, 600)
 	heap.position = Vector3(0, 0, z0 + 13.5)
 	hb.add_child(heap)
+	Turntable.mark(heap, 0.1)
 	for k in range(3):
 		var hl := OmniLight3D.new()
 		hl.light_energy = 1.6
